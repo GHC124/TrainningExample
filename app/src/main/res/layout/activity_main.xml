@@ -11,6 +11,18 @@
 
     <TextView
         style="@style/style18bold"
+        android:text="@string/start_show_fragment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Button android:id="@+id/btnShowFragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/show"
+        />
+
+    <TextView
+        style="@style/style18bold"
         android:text="@string/start_show_dialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,6 +30,6 @@
     <Button android:id="@+id/btnShowDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_dialog"
+        android:text="@string/show"
         />
 </LinearLayout>

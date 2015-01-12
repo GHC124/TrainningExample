@@ -10,5 +10,12 @@
     <Button android:id="@+id/btnShowDialog"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/show_dialog"/>
+        android:text="@string/show"
+        android:layout_marginTop="25dp"/>
+
+    <Button android:id="@+id/btnCloseAllDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/close_all"
+            android:layout_marginTop="25dp"/>
 </LinearLayout>

@@ -1,8 +1,9 @@
 package android.ghc.com.trainningexample;
 
 import android.app.DialogFragment;
-import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -18,6 +19,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button btnShowFragment = (Button)findViewById(R.id.btnShowFragment);
+        btnShowFragment.setOnClickListener(this);
 
         Button btnShowDialog = (Button)findViewById(R.id.btnShowDialog);
         btnShowDialog.setOnClickListener(this);
@@ -54,15 +58,24 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         // in a transaction.  We also want to remove any currently showing
         // dialog, so make our own transaction and take care of that here.
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        Fragment prev = getFragmentManager().findFragmentByTag("dialog");
-        if (prev != null) {
-            ft.remove(prev);
-        }
-        ft.addToBackStack(null);
-
         // Create and show the dialog.
         DialogFragment newFragment = DialogFragmentExample.newInstance(mStackLevel);
-        newFragment.show(ft, "dialog");
+        newFragment.show(ft, "dialog" + mStackLevel);
+    }
+
+    public void closeAllDialog(){
+        FragmentManager fragmentManager = getFragmentManager();
+        for(int i = 1;i <= mStackLevel; i++) {
+            DialogFragmentExample fragment = (DialogFragmentExample) fragmentManager.findFragmentByTag("dialog" + i);
+            if (fragment != null) {
+                fragment.close();
+            }
+        }
+    }
+
+    private void showFragment(){
+        Intent intent = new Intent(this, FragmentExample.class);
+        startActivity(intent);
     }
 
     @Override
@@ -70,6 +83,9 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         switch(v.getId()){
             case R.id.btnShowDialog:
                 showDialog();
+                break;
+            case R.id.btnShowFragment:
+                showFragment();
                 break;
         }
     }

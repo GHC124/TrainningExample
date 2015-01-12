@@ -46,9 +46,20 @@ public class DialogFragmentExample extends DialogFragment {
                 ((MainActivity)getActivity()).showDialog();
             }
         });
+        Button btnClose = (Button)v.findViewById(R.id.btnCloseAllDialog);
+        btnClose.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // When button is clicked, call up to owning activity.
+                ((MainActivity)getActivity()).closeAllDialog();
+            }
+        });
 
        getDialog().setTitle("Dialog #" + mNum);
 
         return v;
+    }
+
+    public void close(){
+        getDialog().dismiss();
     }
 }
